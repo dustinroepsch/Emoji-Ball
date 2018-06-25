@@ -5,7 +5,7 @@ export class Vector {
 
 export class Ball {
     public position: Vector = { x: 100, y: 100 };
-    public radius: number = 25;
+    public radius: number = 45;
     public sprite: string = '⚽️';
 }
 

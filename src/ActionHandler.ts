@@ -9,6 +9,9 @@ export class ActionHandler {
             case Actions.TICK:
                 newState.ball.position.y++;
                 break;
+            case Actions.CLICK:
+                newState.ball.position.x = action.params.x;
+                newState.ball.position.y = action.params.y;
             default:
                 throw new Error(`Action type: ${action.type} is unknown.`);
         }
