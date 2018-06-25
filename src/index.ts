@@ -1,6 +1,7 @@
 import { App } from "./App";
 import { Renderer } from "./Renderer";
 import { Actions } from "./Action";
+import { DataExtracter } from "./DataExtracter";
 
 const game: App = new App();
 
@@ -17,8 +18,8 @@ canvas.addEventListener('click', (event: MouseEvent) => {
     game.dispatch({
         type: Actions.CLICK,
         params: {
-            x: event.pageX - canvas.offsetLeft,
-            y: event.pageY - canvas.offsetTop,
+            xPixels: event.pageX - canvas.offsetLeft,
+            yPixels: event.pageY - canvas.offsetTop,
         }
     });
 });
@@ -26,7 +27,12 @@ canvas.addEventListener('click', (event: MouseEvent) => {
 const ctx: CanvasRenderingContext2D = possiblyNullCtx as CanvasRenderingContext2D;
 document.body.appendChild(canvas);
 
-
+game.dispatch({
+    type: Actions.SET_GAME_HEIGHT_PIXELS,
+    params: {
+        gameHeightPixels: 800
+    }
+})
 
 setInterval(() => {
     game.dispatch({
@@ -34,12 +40,12 @@ setInterval(() => {
         params: null,
     });
 
-    if (canvas.width != game.state.gameWidth) {
-        canvas.width = game.state.gameWidth;
+    if (canvas.width != DataExtracter.gameWidthPixels(game.state)) {
+        canvas.width = DataExtracter.gameWidthPixels(game.state);
     }
 
-    if (canvas.height != game.state.gameHeight) {
-        canvas.height = game.state.gameHeight;
+    if (canvas.height != DataExtracter.gameHeightPixels(game.state)) {
+        canvas.height = DataExtracter.gameHeightPixels(game.state);
     }
 
     Renderer.render(ctx, game.state);
