@@ -5,7 +5,7 @@
 Emoji Ball is an open source clone of the soccer game built into Facebook Messenger.
 
 *🚨 Work In Progress 🚨*
-You can play the current version [here.](dustinroepsch.github.io/Emoji-Ball/)
+You can play the current version [here.](https://dustinroepsch.github.io/Emoji-Ball/)
 
 ## How do I Build?
 
