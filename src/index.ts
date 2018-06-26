@@ -2,6 +2,7 @@ import { App } from "./App";
 import { Renderer } from "./Renderer";
 import { Actions } from "./Action";
 import { DataExtracter } from "./DataExtracter";
+import { Stopwatch } from "./Stopwatch";
 
 const game: App = new App();
 
@@ -34,10 +35,14 @@ game.dispatch({
     }
 })
 
-setInterval(() => {
+const watch = new Stopwatch();
+
+setInterval( () => {
     game.dispatch({
         type: Actions.TICK,
-        params: null,
+        params: {
+            delta: watch.readSeconds()
+        },
     });
 
     if (canvas.width != DataExtracter.gameWidthPixels(game.state)) {
@@ -49,5 +54,4 @@ setInterval(() => {
     }
 
     Renderer.render(ctx, game.state);
-}, 0.06);
-
+}, 0.001);

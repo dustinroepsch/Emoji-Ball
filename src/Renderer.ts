@@ -1,4 +1,4 @@
-import { GameState, Ball } from "./GameState";
+import { GameState } from "./GameState";
 import { DataExtracter } from "./DataExtracter";
 
 export class Renderer {
