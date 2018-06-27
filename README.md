@@ -38,3 +38,5 @@ If you want to update the docs folder to deploy to github pages, use the followi
 `parcel build index.html --public-url /Emoji-Ball/ --out-dir docs`
 
 If you fork and rename the repository, make sure to change the public-url.
+
+The above command can also be ran by running the provided `deploy.sh`.
