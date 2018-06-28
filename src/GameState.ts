@@ -20,21 +20,29 @@ export class Vector {
     public clampMag(max: number): Vector {
         return this.mag() > max ? this.norm().scale(53) : this;
     }
+
+    public dist(other: Vector): number {
+        return Math.sqrt(
+            (other.x - this.x) * (other.x - this.x)
+            + (other.y - this.y) * (other.y - this.y));
+    }
 }
 
 export class Ball {
-    public positionMeters: Vector = new Vector(.0095, .0095);
+    public positionMeters: Vector = new Vector(75 * 3, 75 * 3);
     public velocityMetersPerSecond: Vector = new Vector(0, 0, );
+    public massKg: number = 70;
 
-    public radiusMeters: number = 75;
+    public radiusMeters: number = 100;
     public sprite: string = '⚽️';
 }
 
 export class GameState {
-    public gameWidthSoccerBalls: number = 5;
-    public gameHeightSoccerBalls: number = 10;
+    public gameWidthSoccerBalls: number = 4;
+    public gameHeightSoccerBalls: number = 7;
     public pixelsPerMeter: number = 1;
     public gravityMetersPerSecondSquared: number = 9.8;
+    public touchForceNewtons: number = 1500;
 
     public ball: Ball = new Ball();
 }

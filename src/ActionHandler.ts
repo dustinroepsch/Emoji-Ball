@@ -14,9 +14,15 @@ export class ActionHandler {
                 ActionHandler.applyGravity(newState, action.params.delta as number);
                 break;
             case Actions.CLICK:
-                newState.ball.positionMeters.x = action.params.xPixels / oldState.pixelsPerMeter;
-                newState.ball.positionMeters.y = action.params.yPixels / oldState.pixelsPerMeter;
-                newState.ball.velocityMetersPerSecond = new Vector(0, 0);
+                const touchPointMeters: Vector = new Vector(
+                    action.params.xPixels / oldState.pixelsPerMeter
+                    , action.params.yPixels / oldState.pixelsPerMeter);
+
+                if (touchPointMeters.dist(oldState.ball.positionMeters) < oldState.ball.radiusMeters * 1.5 ) { //add some wiggle room 
+                    const accelerationY: number = oldState.touchForceNewtons / oldState.ball.massKg;
+                    newState.ball.velocityMetersPerSecond.y -= accelerationY;
+                }
+
                 break;
             default:
                 throw new Error(`Action type: ${action.type} is unknown.`);

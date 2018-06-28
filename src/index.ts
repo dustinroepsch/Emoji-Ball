@@ -54,4 +54,4 @@ setInterval( () => {
     }
 
     Renderer.render(ctx, game.state);
-}, 0.001);
+}, 0.000000001);
